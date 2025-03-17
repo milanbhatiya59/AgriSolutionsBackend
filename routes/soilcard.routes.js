@@ -4,6 +4,6 @@ import { getSoilCardData } from '../controllers/soilcard.controller.js';
 
 const router = Router();
 
-router.route('/clerk').post(upload.single('soilcard'), getSoilCardData);
+router.route('/').post(upload.single('soilcard'), getSoilCardData);
 
 export default router;
