@@ -13,8 +13,10 @@ app.use(cookieParser());
 
 //routes import
 import webhookRouter from './routes/webhook.routes.js';
+import soilcardRouter from './routes/soilcard.routes.js';
 
 //routes declaration
 app.use('/api/v1/webhooks', webhookRouter);
+app.use('/api/v1/soilcard', soilcardRouter);
 
 export { app };

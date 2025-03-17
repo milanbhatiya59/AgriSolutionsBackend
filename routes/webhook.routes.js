@@ -3,6 +3,6 @@ import { registerClerkUser } from '../controllers/webhook.controller.js';
 
 const router = Router();
 
-router.route('/clerk').post(registerClerkUser);
+router.route('/').post(registerClerkUser);
 
 export default router;

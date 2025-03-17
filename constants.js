@@ -20,3 +20,6 @@ export const DATABASE_NAME = getEnvVariable('DATABASE_NAME');
 export const CLERK_WEBHOOK_SIGNING_SECRET = getEnvVariable(
   'CLERK_WEBHOOK_SIGNING_SECRET'
 );
+
+// OpenAI Constants
+export const GEMINI_API_KEY = getEnvVariable('GEMINI_API_KEY');
