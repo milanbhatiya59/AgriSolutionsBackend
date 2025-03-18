@@ -2,14 +2,13 @@ import mongoose from 'mongoose';
 
 const farmSchema = new mongoose.Schema(
   {
-    ownerId: {
+    owner: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: true,
     },
     soilHealthCard: {
       soilHealthCardNo: { type: String, default: null },
-      nameOfFarmer: { type: String, default: null },
       validityFrom: { type: String, default: null },
       validityTo: { type: String, default: null },
     },
@@ -23,13 +22,10 @@ const farmSchema = new mongoose.Schema(
     },
     soilSampleDetails: {
       soilSampleNumber: { type: String, default: null },
-      sampleCollectedOn: { type: String, default: null },
       surveyNo: { type: String, default: null },
-      khasraNo_DagNo: { type: String, default: null },
-      farmSize: { type: String, default: null },
+      farmSizeInHector: { type: String, default: null },
       geoPositionLatitude: { type: String, default: null },
       geoPositionLongitude: { type: String, default: null },
-      irrigatedRainfed: { type: String, default: null },
     },
     soilTestResults: {
       pH: { type: Number, default: null },
@@ -45,24 +41,13 @@ const farmSchema = new mongoose.Schema(
       availableManganese_Mn: { type: Number, default: null },
       availableCopper_Cu: { type: Number, default: null },
     },
-    secondaryMicroNutrientsRecommendations: {
-      sulphur_S: { type: String, default: null },
-      zinc_Zn: { type: String, default: null },
-      boron_B: { type: String, default: null },
-      iron_Fe: { type: String, default: null },
-      manganese_Mn: { type: String, default: null },
-      copper_Cu: { type: String, default: null },
-    },
-    fertilizerRecommendations: {
-      crops: [
-        {
-          cropVariety: { type: String, default: null },
-          referenceYield: { type: Number, default: null },
-          fertilizerCombination1_NPK: { type: String, default: null },
-          fertilizerCombination2_NPK: { type: String, default: null },
-        },
-      ],
-    },
+    currentCrop: { type: String, default: null },
+    fertilizerNeeded: [
+      {
+        name: { type: String, default: null },
+        quantity: { type: String, default: null },
+      },
+    ],
   },
   { timestamps: true }
 );

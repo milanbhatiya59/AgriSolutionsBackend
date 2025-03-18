@@ -3,64 +3,57 @@ const soilCardPrompt = `Please analyze the provided image of a Soil Health Card 
 The extracted JSON should include:
 
 {
-  "soilHealthCard": {
-    "soilHealthCardNo": "null | string",
-    "nameOfFarmer": "null | string",
-    "validityFrom": "null | string",
-    "validityTo": "null | string"
-  },
-  "farmersDetails": {
-    "name": "null | string",
-    "address": "null | string",
-    "village": "null | string",
-    "subDistrict": "null | string",
-    "district": "null | string",
-    "PIN": "null | string",
-  },
-  "soilSampleDetails": {
-    "soilSampleNumber": "null | string",
-    "sampleCollectedOn": "null | string",
-    "surveyNo": "null | string",
-    "khasraNo_DagNo": "null | string",
-    "farmSize": "null | string",
-    "geoPositionLatitude": "null | string",
-    "geoPositionLongitude": "null | string",
-    "irrigatedRainfed": "null | string"
-  },
-  "soilTestResults": {
-    "pH": "null | float",
-    "EC": "null | float",
-    "organicCarbon_OC": "null | float",
-    "availableNitrogen_N": "null | float",
-    "availablePhosphorus_P": "null | float",
-    "availablePotassium_K": "null | float",
-    "availableSulphur_S": "null | float",
-    "availableZinc_Zn": "null | float",
-    "availableBoron_B": "null | float",
-    "availableIron_Fe": "null | float",
-    "availableManganese_Mn": "null | float",
-    "availableCopper_Cu": "null | float"
-  },
-  "secondaryMicroNutrientsRecommendations": {
-    "sulphur_S": "null | string",
-    "zinc_Zn": "null | string",
-    "boron_B": "null | string",
-    "iron_Fe": "null | string",
-    "manganese_Mn": "null | string",
-    "copper_Cu": "null | string"
-  },
-  "fertilizerRecommendations": {
-    "crops": [
-      {
-        "cropVariety": "null | string",
-        "referenceYield": "null | float",
-        "fertilizerCombination1_NPK": "null | string",
-        "fertilizerCombination2_NPK": "null | string"
-      }
-    ]
-  }
+  soilHealthCard: {
+      soilHealthCardNo: { type: String, default: null },
+      validityFrom: { type: String, default: null },
+      validityTo: { type: String, default: null },
+    },
+    farmersDetails: {
+      name: { type: String, default: null },
+      address: { type: String, default: null },
+      village: { type: String, default: null },
+      subDistrict: { type: String, default: null },
+      district: { type: String, default: null },
+      PIN: { type: String, default: null },
+    },
+    soilSampleDetails: {
+      soilSampleNumber: { type: String, default: null },
+      surveyNo: { type: String, default: null },
+      farmSizeInHector: { type: String, default: null },
+      geoPositionLatitude: { type: String, default: null },
+      geoPositionLongitude: { type: String, default: null },
+    },
+    soilTestResults: {
+      pH: { type: Number, default: null },
+      EC: { type: Number, default: null },
+      organicCarbon_OC: { type: Number, default: null },
+      availableNitrogen_N: { type: Number, default: null },
+      availablePhosphorus_P: { type: Number, default: null },
+      availablePotassium_K: { type: Number, default: null },
+      availableSulphur_S: { type: Number, default: null },
+      availableZinc_Zn: { type: Number, default: null },
+      availableBoron_B: { type: Number, default: null },
+      availableIron_Fe: { type: Number, default: null },
+      availableManganese_Mn: { type: Number, default: null },
+      availableCopper_Cu: { type: Number, default: null },
+    },
+    cropRecommendations: []
 }
 
-Make sure the response is valid JSON without markdown formatting. If information is unclear or missing, set values as null.`;
+Using the extracted soil test results, generate an array of at least 10 recommended crops based on soil properties, climatic suitability, and nutrient availability.
+
+Each crop recommendation should have the following fields:
+{
+  cropName: { type: String },
+  season: { type: String },
+  fertilizerNeeded: [
+    {
+      name: { type: String },
+      quantity: { type: String },
+    }
+  ]
+}
+
+Ensure that the recommendations are tailored to the soil conditions and that all necessary fields are populated. The response should be valid JSON without markdown formatting. If information is unclear or missing, set values as null.`;
 
 export { soilCardPrompt };
