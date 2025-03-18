@@ -14,9 +14,11 @@ app.use(cookieParser());
 //routes import
 import webhookRouter from './routes/webhook.routes.js';
 import soilcardRouter from './routes/soilcard.routes.js';
+import farmRouter from './routes/farm.routes.js';
 
 //routes declaration
 app.use('/api/v1/webhooks', webhookRouter);
 app.use('/api/v1/soilcard', soilcardRouter);
+app.use('/api/v1/farm', farmRouter);
 
 export { app };

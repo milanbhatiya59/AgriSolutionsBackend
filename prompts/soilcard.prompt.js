@@ -3,58 +3,61 @@ const soilCardPrompt = `Please analyze the provided image of a Soil Health Card 
 The extracted JSON should include:
 
 {
-  "Card_Header_Information": {
-    "SOIL_HEALTH_CARD": "Present/Not Found",
-    "DEPARTMENT_OF_AGRICULTURE": "Present/Not Found",
-    "Year": "Year value or null",
-    "SOIL_HEALTH_CARD_NO": "Value or null"
+  "soilHealthCard": {
+    "soilHealthCardNo": "null | string",
+    "nameOfFarmer": "null | string",
+    "validityFrom": "null | string",
+    "validityTo": "null | string"
   },
-  "Farmer_Location_Details": {
-    "Farmer_Name": "Value or null",
-    "Village": "Value or null",
-    "Taluka": "Value or null",
-    "District": "Value or null",
-    "Account_No": "Value or null"
+  "farmersDetails": {
+    "name": "null | string",
+    "address": "null | string",
+    "village": "null | string",
+    "subDistrict": "null | string",
+    "district": "null | string",
+    "PIN": "null | string",
   },
-  "Land_Soil_Details": {
-    "Survey_No": "Value or null",
-    "Area_Ha": "Value or null",
-    "Soil_Type": "Value or null"
+  "soilSampleDetails": {
+    "soilSampleNumber": "null | string",
+    "sampleCollectedOn": "null | string",
+    "surveyNo": "null | string",
+    "khasraNo_DagNo": "null | string",
+    "farmSize": "null | string",
+    "geoPositionLatitude": "null | string",
+    "geoPositionLongitude": "null | string",
+    "irrigatedRainfed": "null | string"
   },
-  "Fertility_Class_Village": {
-    "Nitrogen": "Value or null",
-    "Phosphorus": "Value or null",
-    "Potash": "Value or null"
+  "soilTestResults": {
+    "pH": "null | float",
+    "EC": "null | float",
+    "organicCarbon_OC": "null | float",
+    "availableNitrogen_N": "null | float",
+    "availablePhosphorus_P": "null | float",
+    "availablePotassium_K": "null | float",
+    "availableSulphur_S": "null | float",
+    "availableZinc_Zn": "null | float",
+    "availableBoron_B": "null | float",
+    "availableIron_Fe": "null | float",
+    "availableManganese_Mn": "null | float",
+    "availableCopper_Cu": "null | float"
   },
-  "Individual_Soil_Analysis": [
-    {
-      "Sr": "Value",
-      "Detail": "Value",
-      "Results": "Value",
-      "Interpretation": "Value"
-    }
-  ],
-  "Fertilizer_Recommendations": [
-    {
-      "Season": "Value",
-      "Crop": "Value",
-      "N_kg_ha": "Value",
-      "P_kg_ha": "Value",
-      "K_kg_ha": "Value"
-    }
-  ],
-  "Other_Relevant_Information": {
-    "General_Recommendations": ["Organic Manure", "Biofertilizer", "Lime/Gypsum"],
-    "Secondary_Micro_Nutrient_Recommendations": [
-      {"Sl_No": 1, "Parameter": "Sulphur (S)"},
-      {"Sl_No": 2, "Parameter": "Zinc (Zn)"},
-      {"Sl_No": 3, "Parameter": "Boron (B)"},
-      {"Sl_No": 4, "Parameter": "Iron (Fe)"},
-      {"Sl_No": 5, "Parameter": "Manganese (Mn)"},
-      {"Sl_No": 6, "Parameter": "Copper (Cu)"}
-    ],
-    "Red_Box_22": "Value or Not Found",
-    "International_Year_of_Soils": "2015"
+  "secondaryMicroNutrientsRecommendations": {
+    "sulphur_S": "null | string",
+    "zinc_Zn": "null | string",
+    "boron_B": "null | string",
+    "iron_Fe": "null | string",
+    "manganese_Mn": "null | string",
+    "copper_Cu": "null | string"
+  },
+  "fertilizerRecommendations": {
+    "crops": [
+      {
+        "cropVariety": "null | string",
+        "referenceYield": "null | float",
+        "fertilizerCombination1_NPK": "null | string",
+        "fertilizerCombination2_NPK": "null | string"
+      }
+    ]
   }
 }
 
