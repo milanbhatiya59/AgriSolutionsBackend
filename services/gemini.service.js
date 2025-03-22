@@ -50,8 +50,6 @@ const callGeminiAPIWithPromptAndImage = async (
 
     let extractedText = response.data.candidates[0].content.parts[0].text;
 
-    console.log(extractedText);
-
     extractedText = extractedText.replace(/```json\n|\n```/g, '').trim();
 
     const jsonOutput = JSON.parse(extractedText);

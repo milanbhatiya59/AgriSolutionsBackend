@@ -20,7 +20,6 @@ const createFarm = asyncHandler(async (req, res) => {
   res.status(201).json(new ApiResponse(201, farm, 'Farm created successfully'));
 });
 
-
 const getFarmsByowner = asyncHandler(async (req, res) => {
   const { ownerClerkId } = req.body;
 
@@ -37,4 +36,13 @@ const getFarmsByowner = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, { user, farms }, 'Farms fetched successfully'));
 });
 
-export { createFarm, getFarmsByowner };
+const getFarmById = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const farm = await Farm.findById(id);
+  if (!farm) {
+    throw new ApiError(404, 'Farm not found');
+  }
+  res.status(200).json(new ApiResponse(200, farm, 'Farm fetched successfully'));
+});
+
+export { createFarm, getFarmsByowner, getFarmById };
