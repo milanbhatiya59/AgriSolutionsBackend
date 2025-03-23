@@ -1,9 +1,9 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
-const farmSchema = new mongoose.Schema(
+const farmSchema = new Schema(
   {
     owner: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'User',
       required: true,
     },
@@ -52,5 +52,4 @@ const farmSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Farm = mongoose.model('Farm', farmSchema);
-export { Farm };
+export const Farm = mongoose.model('Farm', farmSchema);
