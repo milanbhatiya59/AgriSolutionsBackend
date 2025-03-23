@@ -1,10 +1,10 @@
 import { ApiError } from '../utils/ApiError.js';
 import { ApiResponse } from '../utils/ApiResponse.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
-import { soilCardPrompt } from '../prompts/soilcard.prompt.js';
 import { callGeminiAPIToGetTextFromImage } from '../services/gemini.service.js';
+import { pestAndDiseaseDetectionPrompt } from '../prompts/pestanddiseasedetection.prompt.js';
 
-const getSoilCardData = asyncHandler(async (req, res) => {
+const pestAndDiseaseDetection = asyncHandler(async (req, res) => {
   if (!req.file || !req.file.buffer) {
     throw new ApiError(400, 'No file uploaded');
   }
@@ -24,7 +24,7 @@ const getSoilCardData = asyncHandler(async (req, res) => {
   }
 
   const responseData = await callGeminiAPIToGetTextFromImage(
-    soilCardPrompt,
+    pestAndDiseaseDetectionPrompt,
     base64Image,
     mimeType
   );
@@ -36,4 +36,4 @@ const getSoilCardData = asyncHandler(async (req, res) => {
   return res.status(200).json(new ApiResponse(200, responseData, null));
 });
 
-export { getSoilCardData };
+export { pestAndDiseaseDetection };

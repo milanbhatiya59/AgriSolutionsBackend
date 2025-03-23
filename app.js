@@ -15,10 +15,14 @@ app.use(cookieParser());
 import webhookRouter from './routes/webhook.routes.js';
 import soilcardRouter from './routes/soilcard.routes.js';
 import farmRouter from './routes/farm.routes.js';
+import warningRouter from './routes/warning.routes.js';
+import pestAndDiseaseDetectionRouter from './routes/pestanddiseasedetection.routes.js';
 
 //routes declaration
 app.use('/api/v1/webhooks', webhookRouter);
 app.use('/api/v1/soilcard', soilcardRouter);
 app.use('/api/v1/farm', farmRouter);
+app.use('/api/v1/warning', warningRouter);
+app.use('/api/v1/pestanddiseasedetection', pestAndDiseaseDetectionRouter);
 
 export { app };
