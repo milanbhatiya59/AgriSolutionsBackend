@@ -64,6 +64,8 @@ const createFarm = asyncHandler(async (req, res) => {
 const getFarmsByowner = asyncHandler(async (req, res) => {
   const { ownerClerkId } = req.body;
 
+  console.log(ownerClerkId);
+
   const user = await User.findOne({ clerkId: ownerClerkId });
   if (!user) {
     throw new ApiError(404, 'User not found');
