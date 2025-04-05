@@ -38,8 +38,6 @@ const registerClerkUser = asyncHandler(async (req, res) => {
   const eventType = event.type;
   const userData = event.data;
 
-  console.log(eventType);
-
   if (eventType === 'user.created') {
     const { id, email_addresses } = userData;
     if (!id || !email_addresses || email_addresses.length === 0) {

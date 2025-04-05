@@ -4,7 +4,7 @@ const chatSchema = new Schema(
   {
     community: {
       type: Schema.Types.ObjectId,
-      ref: 'Coommunity',
+      ref: 'Community',
       required: true,
     },
     sender: {
