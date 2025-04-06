@@ -57,7 +57,6 @@ const getCommunityChat = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, messages, 'Messages fetched successfully'));
 });
 
-
 const createMessage = asyncHandler(async (req, res) => {
   const { communityId, senderClerkId, content } = req.body;
 

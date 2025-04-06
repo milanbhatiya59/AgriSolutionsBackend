@@ -1,39 +1,48 @@
-const notificationPrompt = `Analyze the provided farm data and generate a daily notification plan for the farmer. The notifications should align with the crop's lifecycle stage based on the **farm's creation date** (assumed to be the planting date).
+const notificationPrompt = `You are an intelligent farm assistant. Analyze the provided farm data and generate a **10-day daily notification plan** for the farmer, starting from the **farm's creation date** (considered as the crop's planting date).
 
-### **Key Factors to Consider:**
-1. **Farm Creation Date:** Use the provided **farm creation date** as the starting point to determine the **current day of the crop’s lifecycle**.
-2. **Crop Lifecycle Stage:** Identify the current stage (e.g., germination, vegetative, flowering, harvesting) based on the number of days since the farm was created.
-3. **Daily Farm Tasks:** Recommend essential tasks for today, including:
-   - **Watering**: Determine irrigation needs based on soil moisture and weather conditions.
-   - **Fertilization**: Specify type and amount per hectare based on the crop’s stage.
-   - **Pest & Disease Control**: Suggest actions if risks are detected.
-   - **Other Farming Activities**: Pruning, weeding, harvesting, etc.
-4. **Weather Considerations:** Adjust recommendations based on forecasted weather (e.g., reduce irrigation if rain is expected).
+Each notification should align with the crop's lifecycle stage (e.g., germination, vegetative, flowering, harvesting), weather, and farm-specific conditions.
 
-### **Response Format (JSON)**
-Your response should be structured as follows:
+---
+
+### **Important Considerations**
+
+1. **Farm Creation Date**: This is the planting date. Generate notifications for **10 consecutive days**, beginning with this date.
+2. **Lifecycle Stage**: Determine the stage of the crop for each day by calculating the number of days since planting.
+3. **Daily Task Recommendations**:
+   - **Watering**: Adjust irrigation based on current lifecycle stage, forecasted weather, and soil moisture.
+   - **Fertilization**: Recommend nutrients relevant to the crop and stage, with quantity per hectare.
+   - **Pest & Disease Control**: Propose interventions if conditions favor outbreaks.
+   - **Other Tasks**: Include pruning, weeding, mulching, thinning, or harvesting as applicable.
+
+4. **Weather Integration**: Modify recommendations if rain is expected or if the weather poses risks (e.g., heat stress, high humidity).
+
+---
+
+### **Response Format (JSON Only)**
 
 \`\`\`json
 {
   "notifications": [
     {
-      "date": "YYYY-MM-DD", 
-      "taskType": "Type of task (e.g., Watering, Fertilizing, Pesticide, Harvesting)",
-      "description": "Detailed explanation of what needs to be done.",
-      "quantity": "Amount per hectare (if applicable)",
-      "unit": "Unit of measurement (liters, kg, etc.)",
+      "date": "YYYY-MM-DD",
+      "taskType": "e.g., Watering, Fertilization, Pesticide, Harvesting",
+      "description": "Clear, concise explanation of the task and its purpose.",
+      "quantity": "Amount per hectare if applicable",
+      "unit": "e.g., liters, kg",
       "priority": "Low | Medium | High"
     }
   ]
 }
 \`\`\`
 
-### **Guidelines**
-- The **date should be calculated** based on the farm’s **creation date** to match the correct lifecycle stage.
-- Ensure the notifications are **actionable, relevant, and concise**.
-- Adapt recommendations based on **location, soil condition, crop type, and weather**.
-- If any required data is missing, provide **general best-practice advice**.
+---
 
-Provide only the JSON output as the response.`;
+### **Guidelines**
+- Always generate **10 entries**, starting from the creation date.
+- Use crop-specific knowledge to tailor lifecycle stages.
+- If some data (like soil moisture or weather) is unavailable, assume typical conditions and provide best-practice advice.
+- Ensure recommendations are practical, accurate, and relevant to a small-to-medium farm setting.
+
+Only return the structured JSON output without additional text or explanations.`;
 
 export { notificationPrompt };
