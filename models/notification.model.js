@@ -20,10 +20,15 @@ const notificationSchema = new Schema({
           'Fertilizing',
           'Pesticide',
           'Harvesting',
+          'Observation',
+          'Weeding',
+          'Fertilization',
+          'Pest Control',
+          'Thinning',
           'Other',
           'Pest & Disease Control',
           'Other Farming Activities',
-        ], // ✅ Added new task types
+        ],
         required: true,
       },
       description: {
@@ -36,7 +41,7 @@ const notificationSchema = new Schema({
       },
       unit: {
         type: String,
-        enum: ['liters', 'kg', 'grams', 'hectares', 'units', 'kg/ha'], // ✅ Added 'kg/ha'
+        enum: ['liters', 'kg', 'grams', 'hectares', 'units', 'kg/ha'],
         required: false,
       },
       status: {
