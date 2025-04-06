@@ -23,13 +23,30 @@ const createFarm = asyncHandler(async (req, res) => {
   const farmDetails = {
     farmId: farm._id,
     creationDate: farm.createdAt,
+    farmer: {
+      name: farm.farmersDetails.name,
+      address: farm.farmersDetails.address,
+      village: farm.farmersDetails.village,
+      subDistrict: farm.farmersDetails.subDistrict,
+      district: farm.farmersDetails.district,
+      PIN: farm.farmersDetails.PIN,
+    },
     location: {
       latitude: farm.soilSampleDetails.geoPositionLatitude,
       longitude: farm.soilSampleDetails.geoPositionLongitude,
     },
-    cropType: farm.currentCrop,
+    soilHealthCard: {
+      cardNumber: farm.soilHealthCard.soilHealthCardNo,
+      validityFrom: farm.soilHealthCard.validityFrom,
+      validityTo: farm.soilHealthCard.validityTo,
+    },
+    soilSampleDetails: {
+      sampleNumber: farm.soilSampleDetails.soilSampleNumber,
+      surveyNo: farm.soilSampleDetails.surveyNo,
+      farmSizeInHector: farm.soilSampleDetails.farmSizeInHector,
+    },
     soilTestResults: farm.soilTestResults,
-    farmSizeInHector: farm.soilSampleDetails.farmSizeInHector,
+    cropType: farm.currentCrop,
     fertilizerNeeded: farm.fertilizerNeeded,
   };
 
