@@ -55,16 +55,39 @@ const createFarm = asyncHandler(async (req, res) => {
     farmDetails
   );
 
-  if (geminiResponse?.notifications?.length) {
-    const notifications = geminiResponse.notifications.map(task => ({
-      date: new Date(task.date),
-      taskType: task.taskType,
-      description: task.description,
-      quantity: task.quantity || null,
-      unit: task.unit || null,
-      status: 'Pending',
-    }));
+  const VALID_TASK_TYPES = [
+    'Watering',
+    'Fertilizing',
+    'Pesticide',
+    'Harvesting',
+    'Observation',
+    'Weeding',
+    'Fertilization',
+    'Pest Control',
+    'Thinning',
+    'Other',
+    'Pest & Disease Control',
+    'Other Farming Activities',
+  ];
+  const VALID_UNITS = ['liters', 'kg', 'grams', 'hectares', 'units', 'kg/ha'];
 
+  const parseQuantity = value => {
+    const num = parseFloat(value);
+    return isNaN(num) ? null : num;
+  };
+
+  const notifications = geminiResponse?.notifications?.map(task => ({
+    date: new Date(task.date),
+    taskType: VALID_TASK_TYPES.includes(task.taskType)
+      ? task.taskType
+      : 'Other',
+    description: task.description || 'No description provided',
+    quantity: parseQuantity(task.quantity),
+    unit: VALID_UNITS.includes(task.unit) ? task.unit : null,
+    status: 'Pending',
+  }));
+
+  if (notifications?.length) {
     await Notification.create({
       farm: farm._id,
       tasks: notifications,

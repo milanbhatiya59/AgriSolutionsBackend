@@ -28,7 +28,9 @@ const notificationSchema = new Schema({
           'Other',
           'Pest & Disease Control',
           'Other Farming Activities',
+          'Soil Amendment', // newly added
         ],
+        default: 'Other', // fallback for unknown taskTypes
         required: true,
       },
       description: {
