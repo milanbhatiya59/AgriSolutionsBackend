@@ -22,7 +22,7 @@ app.options('*', (req, res) => {
 
 // ⏱️ Custom timeout handler (right here)
 app.use((req, res, next) => {
-  res.setTimeout(100000, () => {
+  res.setTimeout(60000, () => {
     console.log('⏰ Request has timed out.');
     res.status(504).json({ message: 'Gateway Timeout' });
   });

@@ -25,7 +25,9 @@ const callGeminiAPIToGetTextFromImage = async (
       ],
     };
 
-    const response = await axios.post(URL, requestBody);
+    const response = await axios.post(URL, requestBody, {
+      timeout: 60000,
+    });
 
     let extractedText = response.data.candidates[0].content.parts[0].text;
 
@@ -52,7 +54,9 @@ const callGeminiAPIToGetText = async (prompt, farmData) => {
       ],
     };
 
-    const response = await axios.post(URL, requestBody);
+    const response = await axios.post(URL, requestBody, {
+      timeout: 60000,
+    });
 
     let extractedText = response.data.candidates[0].content.parts[0].text;
 
