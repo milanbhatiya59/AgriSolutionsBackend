@@ -1,17 +1,32 @@
 import cookieParser from 'cookie-parser';
-import cors from 'cors';
 import express from 'express';
 
 const app = express();
 const CORS_ORIGIN = '*';
 
-app.use(cors({ origin: CORS_ORIGIN, credentials: false }));
+// 🔐 Set CORS headers manually
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', CORS_ORIGIN);
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, PUT, DELETE, OPTIONS'
+  );
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
+// 🛡️ Handle preflight requests
+app.options('*', (req, res) => {
+  res.sendStatus(200);
+});
+
+// 📦 Middlewares
 app.use(express.json({ limit: '16kb' }));
 app.use(express.urlencoded({ extended: true, limit: '16kb' }));
 app.use(express.static('public'));
 app.use(cookieParser());
 
-//routes import
+// 📁 Routes import
 import webhookRouter from './routes/webhook.routes.js';
 import soilcardRouter from './routes/soilcard.routes.js';
 import farmRouter from './routes/farm.routes.js';
@@ -21,7 +36,7 @@ import pestAndDiseaseDetectionRouter from './routes/pestanddiseasedetection.rout
 import communityRouter from './routes/community.routes.js';
 import userRouter from './routes/user.routes.js';
 
-//routes declaration
+// 🔗 Routes declaration
 app.use('/api/v1/webhooks', webhookRouter);
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/soilcard', soilcardRouter);
