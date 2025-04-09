@@ -1,9 +1,9 @@
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express from 'express';
-import { CORS_ORIGIN } from './constants.js';
 
 const app = express();
+const CORS_ORIGIN = 'https://agrisolution.vercel.app';
 
 app.use(cors({ origin: CORS_ORIGIN, credentials: true }));
 app.use(express.json({ limit: '16kb' }));
