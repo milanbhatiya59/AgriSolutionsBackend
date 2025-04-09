@@ -23,11 +23,17 @@ const getSoilCardData = asyncHandler(async (req, res) => {
     throw new ApiError(400, 'Invalid or corrupted image data.');
   }
 
+
+  console.log(mimeType);
+
   const responseData = await callGeminiAPIToGetTextFromImage(
     soilCardPrompt,
     base64Image,
     mimeType
   );
+
+  console.log(responseData);
+
 
   if (!responseData || Object.keys(responseData).length === 0) {
     throw new ApiError(500, 'Failed to retrieve valid data from Gemini API.');

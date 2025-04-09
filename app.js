@@ -20,6 +20,15 @@ app.options('*', (req, res) => {
   res.sendStatus(200);
 });
 
+// ⏱️ Custom timeout handler (right here)
+app.use((req, res, next) => {
+  res.setTimeout(10000, () => {
+    console.log('⏰ Request has timed out.');
+    res.status(504).json({ message: 'Gateway Timeout' });
+  });
+  next();
+});
+
 // 📦 Middlewares
 app.use(express.json({ limit: '16kb' }));
 app.use(express.urlencoded({ extended: true, limit: '16kb' }));
